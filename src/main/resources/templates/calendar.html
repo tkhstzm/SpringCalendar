@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Calendar</title>
+	<!-- Bootstrap -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/common.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div class="now">
+		<p class="content-title">today</p>
+		<a href="./calendar" class="now-date">
+			<p class="now-week" th:text="${currentWeek}"></p>
+			<p class="now-monthday" th:text="${currentMonthEn} + ' . ' + ${currentDay}"></p>
+			<p class="now-year" th:text="${currentYear}"></p>
+		</a>
+	</div>
+	<div class="calendar-main">
+
+		<div class="nav">
+			<!-- 前月 -->
+			<a th:href="@{/calendar(
+					year=${thisMonth == 1 ? thisYear - 1 : thisYear},
+					month=${thisMonth == 1 ? 12 : thisMonth - 1}
+					)}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" stroke="currentColor"
+					stroke-width="0.5" class="bi bi-chevron-left" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0" />
+				</svg>
+			</a>
+			<!-- 現在 -->
+			<div class="cal">
+				<p class="cal-month" th:text="${monthEn}"></p>
+				<p class="cal-year" th:text="${thisYear}"></p>
+			</div>
+
+			<!-- 次月 -->
+			<a th:href="@{/calendar(
+					year=${thisMonth == 12 ? thisYear + 1 : thisYear},
+					month=${thisMonth == 12 ? 1 : thisMonth + 1}
+					)}">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" stroke="currentColor"
+					stroke-width="0.5" class="bi bi-chevron-right" viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708" />
+				</svg>
+			</a>
+		</div>
+
+		<!-- カレンダー表示 -->
+		<div class="main-block">
+			<table class="cal-table">
+				<tr>
+					<th class="sunday">sun</th>
+					<th>mon</th>
+					<th>tue</th>
+					<th>wed</th>
+					<th>thu</th>
+					<th>fri</th>
+					<th class="saturday">sat</th>
+				</tr>
+
+				<tr th:each="week : ${date}">
+					<td th:each="day : ${week}" th:classappend="${day != ''} ? 'day-box' : ''">
+						<a th:if="${day != ''}" th:classappend="
+								${day == currentDay 
+							    and thisYear == currentYear
+								and thisMonth == currentMonth ? 'today ' : ''}
+								 + ${(dayStat.index == 0 && day != '') ? 'sunday ' : ''}
+								+ ${(dayStat.index == 6 && day != '') ? 'saturday ' : ''}
+								+ (${memo[weekStat.index][dayStat.index]} ? 'has-memo' : '')"
+							th:onclick="'showMemoPopup(' + ${thisyear} + ',' + ${thisMonth} + ',' + ${day} +"
+							th:href="@{/memo(year=${thisYear}, month=${thisMonth}, date=${day})}" th:text="${day}">
+						</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+
+		<!-- メモ一覧 -->
+		<div class="btn-wrap">
+			<a th:href="@{/memoList(year=${thisYear},month=${thisMonth})}" class="btn">
+				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-list-ul"
+					viewBox="0 0 16 16">
+					<path fill-rule="evenodd"
+						d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5m-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2m0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2" />
+				</svg> notes list</a>
+		</div>
+	</div>
+</body>
+</html>

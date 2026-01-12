@@ -1,0 +1,261 @@
+@charset "UTF-8";
+
+body {
+	max-width: 1000px;
+	margin: 0 auto;
+	color: #333;
+	background: #2C306A;
+	font-family: "Roboto", sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+p {
+	margin: 0;
+}
+
+
+
+
+
+
+/* 画面上部 */
+.now {
+	padding: 20px;
+}
+
+.content-title {
+	color: #fff;
+	font-size: 24px;
+	margin: 0 0 8px 0;
+}
+
+.now-date {
+	color: #ffe621;
+	font-size: 24px;
+}
+
+.now-monthday {
+	margin: -10px 0 0;
+	font-size: 50px;
+	font-weight: bold;
+}
+
+/* メイン部分 */
+.calendar-main {
+	padding: 24px 8px;
+	border-radius: 34px 34px 0 0;
+	background: #f8f9fa;
+	height: 100vh;
+}
+
+.main-block {
+	padding: 8px;
+}
+
+
+
+
+					
+					.content-title .bi,
+					.content-title .bi-pencil-square {
+						color: #2C306A;
+					}
+					
+					
+					
+					
+					.now-today .bi {
+						color: #fff;
+					}
+					
+
+
+
+
+
+
+/*  カレンダー画面  */
+.nav {
+	font-size: 24px;
+	justify-content: space-between;
+	margin: 0 0 16px 0;
+	padding: 0 10px;
+}
+
+.nav a {
+	font-weight: bold;
+}
+
+.bi {
+	color: #e97741;
+	stroke-width: 1.5;
+}
+
+.cal {
+	font-weight: bold;
+	color: #e97741;
+	text-align: center;
+}
+
+.cal-month {
+	margin: 0 0 -6px 0;
+}
+
+.cal-year {
+	font-size: 14px;
+}
+
+.cal-table {
+	width: 100%;
+}
+
+.cal-table tr {
+	text-align: center;
+}
+
+.cal-table a {
+	color: #696969;
+}
+
+th {
+	color: #696969;
+}
+
+.sunday {
+    color: #f08080 !important;
+}
+
+.saturday {
+    color: #1e90ff !important;
+}
+
+.has-memo {
+	position: relative;
+	z-index: 99;
+}
+
+.has-memo::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    right: 50%;
+    transform: translate(50%, -52%);
+    z-index: -99;
+    width: 5px;
+    height: 5px;
+    background:  #e97741;
+    border-radius: 50vh;
+}
+
+.today {
+	position: relative;
+	z-index: 99;
+}
+
+.today::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    transform: translate(50%, -52%);
+    z-index: -99;
+    width: 34px;
+    height: 34px;
+    background:  #ffe621;
+    border-radius: 50vh;
+}
+
+.day-box {
+	padding: 0;
+}
+
+.day-box a {
+	display: block;
+	padding: 14px 10px;
+}
+
+/* ボタン */
+.btn-wrap {
+	position: fixed;
+	bottom: 10px;
+	width: 95%;
+	display: flex;
+	gap: 8px;
+}
+
+.btn,
+.btn:hover {
+	width: 100%;
+	padding: 0;
+	line-height: 48px;
+	border: none;
+	color: #fff;
+	border-radius: 50vh;
+	font-size: 20px;
+	text-align: center;
+	background: #e97741;
+}
+
+.btn:hover {
+	background: #c76232;
+}
+
+.btn .bi {
+	color: #fff;
+}
+
+/* メモ画面 */
+.back {
+	padding: 20px 12px;
+}
+
+.back a {
+	color: #fff;
+	font-size: 20px;
+}
+
+.back .bi {
+	margin: 0 0 3px 0;
+    color: #fff;
+    stroke-width: 1;
+}
+
+.notes-date {
+	padding: 0 8px;
+	color: #e97741;
+	font-size: 20px;
+}
+
+.notes-date .content-title {
+	color: #2C306A;
+}
+
+.notes-monthday {
+	margin: -8px 0 0;
+	font-size: 34px;
+	font-weight: bold;
+}
+
+/* メモ一覧画面 */
+.notes-list {
+	padding: 8px;
+}
+
+.list-nav {
+	margin: 0 4px;
+}
+
+.memo-list-item {
+	display: block;
+	text-decoration: none;
+	color: #545151;
+	padding: 16px;
+	margin: 10px 0 0;
+    background: #fff;
+    border: 1px solid #dadde0;
+    border-radius: 5px;
+	
+}
